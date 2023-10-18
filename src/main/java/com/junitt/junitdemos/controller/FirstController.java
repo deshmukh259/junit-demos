@@ -27,8 +27,13 @@ public class FirstController {
     @GetMapping(value = "/user/{username}")
     public User getUser(@PathVariable String username){
 
-        Optional<User> user = userDao.findById(username);
-        System.out.println("user saved id "+user.get().getUsername());
-        return user.get();
+        try {
+            Optional<User> user = userDao.findById(username);
+            System.out.println("user saved id "+user.get().getUsername());
+            return user.get();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }
