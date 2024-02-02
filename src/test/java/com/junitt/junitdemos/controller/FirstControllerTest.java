@@ -48,6 +48,7 @@ class FirstControllerTest {
         Mockito.when(userDao.findById("abcd")).thenReturn(Optional.of(user));
         mockMvc.perform(get("/user/abcd")).andExpect(status().isOk())
                 .andExpect(jsonPath("$.username").value("abcd"))
-                .andExpect(jsonPath("$.email").value("abcd@gmail.com"));
+                .andExpect(jsonPath("$.email").value("abcd@gmail.com"))
+                .andExpect(jsonPath("$.enabled").value("true"));
     }
 }
